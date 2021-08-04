@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package transport_catalogue_serialize;
+
+enum ItemsType {
+    WAIT = 0;
+    BUS = 1;
+    DEFAULT = 2;
+}
+
+message Weight {
+    ItemsType type = 1;
+    double time = 2;
+    string stop_name = 3;
+    string bus_name = 4;
+    int32 span_count = 5;
+}
+
+message Edge {
+    uint32 from = 1;
+    uint32 to = 2;
+    Weight weight = 3;
+}
+
+message RepeatedIncidenceLists {
+    repeated uint32 rep_incidence_lists = 1;
+}
+
+message DirectedWeightedGraph {
+    repeated Edge edges = 1;
+    repeated RepeatedIncidenceLists incidence_lists = 2;
+}
